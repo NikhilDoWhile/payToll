@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html>
 <head>
@@ -28,35 +30,35 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">About</a>
+        <a class="nav-link" href="index.php">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">Contact</a>
+        <a class="nav-link" href="index.php">Contact</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Registration</a>
+        <a class="nav-link" href="registration.php">Registration</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#login.html">Login</a>
+        <a class="nav-link" href="#">Login</a>
       </li>
     </ul>
   </div>
   </div>
 </nav>
 </div>
-
+<form id="form_id" name="register" enctype="multipart/form-data" action="" method="POST">
 <div class="container formzed">
-<form>
+
   <div class="form-group">
     <label for="phone">Phone</label>
-    <input type="phone" class="form-control" name="phone" id="phone" placeholder="Enter Phone number">
+    <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Phone number">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+    <input type="text" class="form-control" name="password" id="password" placeholder="Password">
   </div>
   <div class="form-check">
     <label class="form-check-label">
@@ -64,9 +66,29 @@
       Remember me
     </label>
   </div>
-  <button type="submit" class="btn btn-light btn-block">Submit</button>
-</form>
-</div>
+  <button type="submit" name="submit" class="btn btn-light btn-block">Submit</button>
+
+</div></form>
+
+<?php
+require("dbconn.php"); 
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+  
+
+        $number=$_REQUEST['phone'];
+        
+        $password=$_REQUEST['password'];
+
+        if(($number=="9728565482") && ($password== "1234") ){
+        
+        header('location: http://localhost/toll/show.php');
+                
+                        
+                }}
+               
+             
+?>
 
 <div class="container">
   <footer class="row">
@@ -94,5 +116,63 @@
     <script type="text/javascript" src="js/style.js"></script>
 
 </body>
-</html>
+
+
+
+    
+    <!-- /main nav --> 
+
+
+<?php
+//session_start();
+//$admin_id=$_SESSION['j_userid'];
+//echo $admin_id;
+//Logout
+@$log=$_REQUEST['log'];
+
+ //if($log=="logout" or $admin_id=="")
+      //{    
+      
+      //session_unset();      
+     //header("location: index.php");
+     
+   // }
+
+
+?>
+
+<!-- Essential jQuery Plugins
+    ================================================== --> 
+<!-- Main jQuery --> 
+<script src="js/jquery-1.11.1.min.js"></script> 
+<!-- Twitter Bootstrap --> 
+<script src="js/bootstrap.min.js"></script> 
+<!-- Single Page Nav --> 
+<script src="js/jquery.singlePageNav.min.js"></script> 
+<!-- jquery.fancybox.pack --> 
+<script src="js/jquery.fancybox.pack.js"></script> 
+<!-- Owl Carousel --> 
+<script src="js/owl.carousel.min.js"></script> 
+<!-- jquery easing --> 
+<script src="js/jquery.easing.min.js"></script> 
+<!-- Fullscreen slider --> 
+<script src="js/jquery.slitslider.js"></script> 
+<script src="js/jquery.ba-cond.min.js"></script> 
+<!-- onscroll animation --> 
+<script src="js/wow.min.js"></script> 
+<!-- Custom Functions --> 
+<script src="js/main.js"></script>
+<script src="js/jquery.slideControl.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+  
+  $('.slideControl').slideControl({
+  min: 14,
+  max: 100});
+  $(".date-picker").datepicker();
+});
+</script> 
+
+
 

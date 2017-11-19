@@ -1,3 +1,9 @@
+<?php
+
+include("dbconn.php");
+$tablename = "details";
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -39,13 +45,10 @@
         <a class="nav-link" href="#contact">Contact</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="helpline.html">Helpline</a>
+        <a class="nav-link" href="registration.php">Registration</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="registration.html">Registration</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.html">Login</a>
+        <a class="nav-link" href="login.php">Login</a>
       </li>
     </ul>
   </div>
@@ -115,6 +118,22 @@
   </div>
 </section>
 
+<section id="query">
+  <div class="container">
+  <h2 class="section-header text-dark wow fadeInUpBig  animated" data-wow-delay="0.28s" style="visibility: visible; animation-delay: 0.28s;">
+    Enter Your Query
+  </h2>
+<div class="wrap-up">
+  <iframe
+    src="https://console.dialogflow.com/api-client/demo/embedded/95998938-e308-4637-9379-6669adc0ecdd">
+</iframe>
+
+<span class="skype-button bubble " data-bot-id="07ac2938-018c-4cea-86c3-d1d7e2b5d337"></span>
+
+</div>
+  </div>
+</section>
+
 <div class="container">
   <footer class="row">
       <div class="col col-full">
@@ -131,6 +150,8 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- SKYPE -->
+      <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- WoW Js -->
     <script src="js/wow.min.js"></script>

@@ -1,3 +1,51 @@
+<?php
+
+include("dbconn.php");
+$tablename = "details";
+
+
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+
+        $contactperson=$_REQUEST['contactperson'];
+        
+        $email=$_REQUEST['email'];
+        
+        $phone=$_REQUEST['phone'];
+        $numplate=$_REQUEST['numplate'];
+        $amount=1000;
+        
+        $submit=$_REQUEST['submit'];
+
+    if($contactperson=="" or $phone=="" or $email==""){
+                           echo "<script>alert('All Fields Requireds')</script>";
+                        }
+
+        $flag=1;
+
+        $sql="SELECT phone,email FROM $tablename";
+        $result=mysqli_query($conn,$sql);
+        while ($row= mysqli_fetch_array($result)) {
+          if ($phone==$row[0] && $email==$row[1]) {
+            mysqli_query($conn,"UPDATE $tablename SET comment='$row[2],$comment' WHERE (email='$email' AND phone='$phone') ");
+            echo "<script>alert('thanks for contacting again')</script>";
+            $flag++;
+          }
+    }
+  if($flag==1){
+    $query_upload="INSERT into $tablename (name,phone,email,number_plate,amount) VALUES ('$contactperson','$phone','$email','$numplate','$amount')";
+    echo "<script>alert('Thank you! Your query Registered Sucessfully');</script>";
+
+      mysqli_query($conn,$query_upload) or die("error in $query_upload == ----> ".mysqli_error($conn));}
+
+                       
+
+}
+
+
+?>
+
+
 <!doctype html>
 <html>
 <head>
@@ -15,12 +63,14 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 
+
+
 </head>
 <body id="regin">
 <div class="boxed-navb">
 <nav class="navbar container navbar-expand-lg navbar-light bg-light">
 <div class="container">
-  <a class="navbar-brand" href="#">Smarty</a>
+  <a class="navbar-brand" href="index.php">Smarty</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -28,20 +78,21 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">About</a>
+        <a class="nav-link" href="index.php">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">Contact</a>
+        <a class="nav-link" href="index.php">Contact</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">Registration</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#login.html">Login</a>
+        <a class="nav-link" href="login.php">Login</a>
       </li>
+
     </ul>
   </div>
   </div>
@@ -49,38 +100,31 @@
 </div>
 
 <div class="container formzed">
-<form>
+<form id="form_id" name="register" enctype="multipart/form-data" action="" method="POST">
   <div class="form-group">
     <label for="contactperson">Name</label>
     <input type="text" class="form-control" name="contactperson" id="contactperson" placeholder="Enter Name">
+    
   </div>
   <div class="form-group">
     <label for="phone">Phone</label>
     <input type="phone" class="form-control" name="phone" id="phone" placeholder="Enter Phone number">
+    
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+     
   </div>
-  <label>Vehicles</label>
-  <div class="form-check">
-    <label class="form-check-label">
-      <input class="form-check-input" type="radio" name="vehicle" id="fourwheel" value="fourwheel" checked>
-      Four Wheeler
-    </label>
-  </div>
-  <div class="form-check">
-    <label class="form-check-label">
-      <input class="form-check-input" type="radio" name="vehicle" id="twhowheel" value="twhowheel">
-      Two Wheeler
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-light btn-block">Submit</button>
+  
+<div class="form-group">
+                  <label for="inputEmail">Number Plate<span class="red">*</span></label>
+                  <input type="text" name="numplate" class="form-control" id="numplate" placeholder="Enter your number plate" onkeypress="javascript: clearField("numplateerrorbox")">
+                  
+                </div>
+
+  <button type="submit" name="submit" class="btn btn-light btn-block">Submit</button>
 </form>
 </div>
 
